@@ -17,7 +17,7 @@ function make_backup {
         echo ' DONE'
     done
 
-    s3cmd sync --delete-removed --access_key=${S3_ACCESS_KEY} --secret_key=${S3_SECRET_KEY} ${DIR} s3://${S3_BUCKET}/db/${DB}
+    s3cmd sync --dry-run --delete-removed --access_key=${S3_ACCESS_KEY} --secret_key=${S3_SECRET_KEY} ${DIR} s3://${S3_BUCKET}/db/${DB}
 }
 
 make_backup ${MYSQL_DB}
