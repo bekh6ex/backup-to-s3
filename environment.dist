@@ -1,6 +1,7 @@
 S3_BUCKET=bucket
 S3_ACCESS_KEY=access_key
 S3_SECRET_KEY=secret_key
+MYSQL_HOST=mysql
 MYSQL_DB=db
 MYSQL_USER=root
 MYSQL_PASS=root_pass
