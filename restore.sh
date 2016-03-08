@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-s3cmd sync --no-check-md5 --access_key=${S3_ACCESS_KEY} --secret_key=${S3_SECRET_KEY} s3://${S3_BUCKET}/ /backup
+s3cmd sync --no-check-md5 --access_key=${S3_ACCESS_KEY} --secret_key=${S3_SECRET_KEY} s3://${S3_BUCKET}/ /backup/
 
 for DIR in /backup/db/*; do
   DB=${DIR##*/}
