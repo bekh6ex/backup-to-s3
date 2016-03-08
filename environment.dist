@@ -1,0 +1,4 @@
+S3_BUCKET: bucket
+MYSQL_DB: db
+MYSQL_USER: root
+MYSQL_PASS: root_pass
