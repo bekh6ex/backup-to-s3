@@ -5,7 +5,7 @@ function make_backup {
     DB=$1
     DIR=${BACKUP_DIR}/${DB}
     rm -rf ${DIR} && mkdir -p -m 0777 ${DIR}
-    for TABLE in `echo "SHOW TABLES" | mysql --login-path=backup -sN ${DB}`; do
+    for TABLE in `echo "SHOW TABLES" | mysql --host=${MYSQL_HOST} --user=${MYSQL_USER} --password=${MYSQL_PASS} -sN ${DB}`; do
         echo -n Dumping  ${DB}.${TABLE} ...
         mysqldump --host=${MYSQL_HOST}  --user=${MYSQL_USER} --password=${MYSQL_PASS} --skip-comments ${DB} ${TABLE} > ${DIR}/${TABLE}.sql
         echo ' DONE'
