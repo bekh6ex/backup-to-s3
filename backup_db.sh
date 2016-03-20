@@ -9,6 +9,7 @@ function make_backup {
         echo -n Dumping  ${DB}.${TABLE} ...
         mysqldump --host=${MYSQL_HOST}  --user=${MYSQL_USER} --password=${MYSQL_PASS} --skip-comments ${DB} ${TABLE} > ${DIR}/${TABLE}.sql && \
         gzip -n -9 -q ${DIR}/${TABLE}.sql
+
         if [[ $? != 0 ]]
         then
           echo ' FAIL';
@@ -17,7 +18,7 @@ function make_backup {
         echo ' DONE'
     done
 
-    s3cmd sync --verbose --delete-removed --access_key=${S3_ACCESS_KEY} --secret_key=${S3_SECRET_KEY} ${DIR}/ s3://${S3_BUCKET}/db/${DB}/
+    s3cmd sync --verbose --access_key=${S3_ACCESS_KEY} --secret_key=${S3_SECRET_KEY} ${DIR}/ s3://${S3_BUCKET}/db/${DB}/
 }
 
 make_backup ${MYSQL_DB}
