@@ -17,7 +17,7 @@ function s3sync {
     fi
 
     set -x
-    s3cmd sync --dry-run --verbose --no-check-md5 --access_key=${S3_ACCESS_KEY} --secret_key=${S3_SECRET_KEY} --delete-removed "${FROM}" "s3://${S3_BUCKET}${REMOTE_PATH}"
+    s3cmd sync --verbose --no-check-md5 --access_key=${S3_ACCESS_KEY} --secret_key=${S3_SECRET_KEY} --delete-removed "${FROM}" "s3://${S3_BUCKET}${REMOTE_PATH}"
     set +x
 }
 
@@ -32,7 +32,7 @@ function s3put {
     fi
 
     set -x
-    s3cmd put --dry-run --verbose --access_key=${S3_ACCESS_KEY} --secret_key=${S3_SECRET_KEY} "${FROM}" "s3://${S3_BUCKET}${REMOTE_PATH}"
+    s3cmd put --verbose --access_key=${S3_ACCESS_KEY} --secret_key=${S3_SECRET_KEY} "${FROM}" "s3://${S3_BUCKET}${REMOTE_PATH}"
     set +x
 }
 
