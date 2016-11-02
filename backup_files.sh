@@ -62,6 +62,8 @@ function sync_dir {
 
     echo "Too many files in dir '${DIR}': ${COUNT} - splitting"
 
+    local SAVEIFS=$IFS
+    IFS=$(echo -en "\n\b") #Set up new array separator
     for D in `find "$DIR" -maxdepth 1 -type d`
     do
         if [[ "${D}" == "${DIR}" ]];
@@ -76,6 +78,7 @@ function sync_dir {
     do
         s3put "$F" "$(remote_path "$F")"
     done
+    IFS=${SAVEIFS}
 
 }
 
