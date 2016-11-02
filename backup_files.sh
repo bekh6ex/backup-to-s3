@@ -6,9 +6,6 @@ MAX=30000
 
 set -e
 
-
-S3_ACCESS_ARGS=" --access_key=${S3_ACCESS_KEY} --secret_key=${S3_SECRET_KEY} "
-
 function s3sync {
     local FROM=$1
     local REMOTE_PATH=$2
@@ -20,9 +17,7 @@ function s3sync {
     fi
 
     set -x
-
-#    echo s3cmd sync "${FROM}" "s3://${S3_BUCKET}${REMOTE_PATH}"
-    s3cmd sync --dry-run --verbose --no-check-md5 ${S3_ACCESS_ARGS} --delete-removed "${FROM}" "s3://${S3_BUCKET}${REMOTE_PATH}"
+    s3cmd sync --dry-run --verbose --no-check-md5 --access_key=${S3_ACCESS_KEY} --secret_key=${S3_SECRET_KEY} --delete-removed "${FROM}" "s3://${S3_BUCKET}${REMOTE_PATH}"
     set +x
 }
 
@@ -37,9 +32,7 @@ function s3put {
     fi
 
     set -x
-
-#    echo s3cmd put "${FROM}" "s3://${S3_BUCKET}${REMOTE_PATH}"
-    s3cmd put --dry-run --verbose ${S3_ACCESS_ARGS} "${FROM}" "s3://${S3_BUCKET}${REMOTE_PATH}"
+    s3cmd put --dry-run --verbose --access_key=${S3_ACCESS_KEY} --secret_key=${S3_SECRET_KEY} "${FROM}" "s3://${S3_BUCKET}${REMOTE_PATH}"
     set +x
 }
 
