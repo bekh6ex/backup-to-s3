@@ -22,7 +22,7 @@ function s3sync {
     set -x
 
 #    echo s3cmd sync "${FROM}" "s3://${S3_BUCKET}${REMOTE_PATH}"
-    s3cmd sync --dry-run --verbose --no-check-md5 $S3_ACCESS_ARGS --delete-removed "$FROM" "s3://$S3_BUCKET$REMOTE_PATH"
+    s3cmd sync --dry-run --verbose --no-check-md5 ${S3_ACCESS_ARGS} --delete-removed "${FROM}" "s3://${S3_BUCKET}${REMOTE_PATH}"
     set +x
 }
 
@@ -39,7 +39,7 @@ function s3put {
     set -x
 
 #    echo s3cmd put "${FROM}" "s3://${S3_BUCKET}${REMOTE_PATH}"
-    s3cmd put --dry-run --verbose $S3_ACCESS_ARGS "$FROM" "s3://$S3_BUCKET$REMOTE_PATH"
+    s3cmd put --dry-run --verbose ${S3_ACCESS_ARGS} "${FROM}" "s3://${S3_BUCKET}${REMOTE_PATH}"
     set +x
 }
 
